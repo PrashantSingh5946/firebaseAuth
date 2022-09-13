@@ -19,7 +19,7 @@ const app = initializeApp(firebaseConfig);
 //Auth provider could be any of them
 const provider = new GoogleAuthProvider();
 
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 export const signInWithGooglePopup = async() =>{
     let result = await signInWithPopup(auth,provider);
@@ -30,3 +30,4 @@ export const signInWithGoogleRedirect = async() =>{
     let result = await signInWithRedirect(auth,provider);
     //gives no result but gives side effects
 }
+
