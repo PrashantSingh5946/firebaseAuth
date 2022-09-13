@@ -8,6 +8,7 @@ import {
 } from "../util/firebase-util";
 import { onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
+import SignInAndUp from "./SignInAndUp";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,6 +38,7 @@ function App() {
 
   const signOutHandler = () => {
     logout();
+    //Not working properly with google sign in
   };
 
   const reauthenticateHandler = () => {
@@ -44,19 +46,23 @@ function App() {
   };
   return (
     <div className="App">
-      <button onClick={googlePopupSignInHandler}>Google Popup</button>
-      <button onClick={googleRedirectSignInHandler}>
-        Google redirect login
-      </button>
+      <div>
+        <button onClick={googlePopupSignInHandler}>Google Popup</button>
+        <button onClick={googleRedirectSignInHandler}>
+          Google redirect login
+        </button>
 
-      {isLoggedIn && (
-        <>
-          <button onClick={signOutHandler}>Sign Out</button>
-          <button onClick={reauthenticateHandler}>
-            Reauthenticate
-          </button>
-        </>
-      )}
+        {isLoggedIn && (
+          <>
+            <button onClick={signOutHandler}>Sign Out</button>
+            <button onClick={reauthenticateHandler}>Reauthenticate</button>
+          </>
+        )}
+      </div>
+
+      <div>
+        <SignInAndUp/>
+      </div>
     </div>
   );
 }
