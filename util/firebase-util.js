@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider,signInWithPopup,signInWithRedirect,getAuth } from "firebase/auth";
+import { GoogleAuthProvider,signInWithPopup,signInWithRedirect,getAuth, signOut,reauthenticateWithPopup} from "firebase/auth";
 
 
 
@@ -31,3 +31,11 @@ export const signInWithGoogleRedirect = async() =>{
     //gives no result but gives side effects
 }
 
+export const logout = async() =>{
+   await signOut(auth);
+}
+
+export const revalidate = async(user) =>
+{
+    reauthenticateWithPopup(user,provider);
+}
